@@ -10,7 +10,7 @@ npm i pullout --save
 
 ## pullout(stream[, type = 'buffer'], fn)
 
-Type could be `string` or `buffer` only.
+Type could be `string` or `buffer`.
 
 ```js
 const pullout = require('pullout'),
