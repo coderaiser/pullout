@@ -50,6 +50,17 @@ test('pullout: type: string', (t) => {
     });
 });
 
+test('pullout: type: string: empty', (t) => {
+    const name = `${__dirname}/fixture/empty`;
+    const read = fs.createReadStream(name);
+    
+    pullout(read, 'string', (error, data) => {
+        t.equal(data, '', 'should return empty string');
+        
+        t.end();
+    });
+});
+
 test('pullout: type: buffer', (t) => {
     const read = fs.createReadStream(__filename);
     
