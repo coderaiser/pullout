@@ -32,7 +32,7 @@ test('pullout: no type', (t) => {
     pullout(read, (error, data) => {
         const file = fs.readFileSync(__filename);
         
-        t.ok(Buffer.compare(file, data), 'data should be equal');
+        t.ok(file.equals(data), 'data should be equal');
         
         t.end();
     });
@@ -67,7 +67,7 @@ test('pullout: type: buffer', (t) => {
     pullout(read, 'buffer', (error, data) => {
         const file = fs.readFileSync(__filename);
         
-        t.ok(Buffer.compare(data, file), 'data should be equal');
+        t.deepEqual(data, file, 'data should be equal');
         
         t.end();
     });
