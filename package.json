@@ -31,7 +31,7 @@
   "license": "MIT",
   "main": "lib/pullout.js",
   "devDependencies": {
-    "buble": "^0.17.0",
+    "buble": "^0.18.0",
     "coveralls": "^3.0.0",
     "eslint": "^4.0.0",
     "nodemon": "^1.11.0",
