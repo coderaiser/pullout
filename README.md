@@ -8,7 +8,7 @@ Pull out data from stream.
 npm i pullout --save
 ```
 
-## pullout(stream[, type = 'buffer'], fn)
+## pullout([type = 'buffer',]stream, fn)
 
 Type could be `string` or `buffer`.
 
@@ -18,7 +18,7 @@ const fs = require('fs'),
 
 const readStream = fs.createReadStream(__filename);
 
-pullout(readStream, 'string', (error, data) => {
+pullout('string', readStream, (error, data) => {
     console.log(error || data);
 });
 ```

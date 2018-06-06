@@ -41,7 +41,7 @@ test('pullout: no type', (t) => {
 test('pullout: type: string', (t) => {
     const read = fs.createReadStream(__filename);
     
-    pullout(read, 'string', (error, data) => {
+    pullout('string', read, (error, data) => {
         const file = fs.readFileSync(__filename, 'utf8');
         
         t.equal(data, file, 'data should be equal');
@@ -54,7 +54,7 @@ test('pullout: type: string: empty', (t) => {
     const name = `${__dirname}/fixture/empty`;
     const read = fs.createReadStream(name);
     
-    pullout(read, 'string', (error, data) => {
+    pullout('string', read, (error, data) => {
         t.equal(data, '', 'should return empty string');
         
         t.end();
@@ -64,7 +64,7 @@ test('pullout: type: string: empty', (t) => {
 test('pullout: type: buffer', (t) => {
     const read = fs.createReadStream(__filename);
     
-    pullout(read, 'buffer', (error, data) => {
+    pullout('buffer', read, (error, data) => {
         const file = fs.readFileSync(__filename);
         
         t.deepEqual(data, file, 'data should be equal');
