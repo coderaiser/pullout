@@ -23,14 +23,6 @@ pullout(readStream, 'string', (error, data) => {
 });
 ```
 
-## Environments
-
-In old `node.js` environments that not fully supports `es2015`, `pullout` could be used with:
-
-```js
-var pullout = require('pullout/legacy');
-```
-
 ## Related
 
 - [pipe-io](https://github.com/coderaiser/pipe-io "pipe-io") - pipe streams and handle events

@@ -21,17 +21,12 @@
     "watch:test": "npm run watcher -- \"npm test\"",
     "watcher": "nodemon -w lib -w test -x",
     "coverage": "nyc npm test",
-    "report": "nyc report --reporter=text-lcov | coveralls",
-    "wisdom": "npm run build",
-    "6to5": "buble lib -o legacy",
-    "build": "redrun 6to5 legacy",
-    "legacy": "echo \"module.exports = require('./pullout');\" > legacy/index.js"
+    "report": "nyc report --reporter=text-lcov | coveralls"
   },
   "dependencies": {},
   "license": "MIT",
   "main": "lib/pullout.js",
   "devDependencies": {
-    "buble": "^0.19.2",
     "coveralls": "^3.0.0",
     "eslint": "^4.0.0",
     "eslint-plugin-node": "^6.0.1",
@@ -39,5 +34,8 @@
     "nyc": "^12.0.2",
     "redrun": "^6.0.0",
     "tape": "^4.2.0"
+  },
+  "engines": {
+    "node": ">=4.0.0"
   }
 }
