@@ -3,7 +3,7 @@
 const fs = require('fs');
 
 const tryTo = require('try-to-tape');
-const test = require('tape');
+const test = tryTo(require('tape'));
 const tryToCatch = require('try-to-catch');
 const pullout = require('..');
 
