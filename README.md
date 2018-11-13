@@ -5,10 +5,10 @@ Pull out data from stream.
 ## Install
 
 ```
-npm i pullout --save
+npm i pullout
 ```
 
-## pullout(stream[, type = 'buffer'], fn)
+## pullout(stream[, type = 'string'])
 
 Type could be `string` or `buffer`.
 
@@ -18,9 +18,8 @@ const fs = require('fs'),
 
 const readStream = fs.createReadStream(__filename);
 
-pullout(readStream, 'string', (error, data) => {
-    console.log(error || data);
-});
+const data = await pullout(readStream);
+console.log(data);
 ```
 
 ## Related
