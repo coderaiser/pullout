@@ -1,3 +1,11 @@
+2019.09.21, v4.0.0
+
+feature:
+- (pullout) drop support of node < 10
+- (pullout) madrun
+- (package) nyc v14.0.0
+
+
 2018.11.13, v3.0.0
 
 feature:
