@@ -16,26 +16,28 @@
     "url": "git://github.com/coderaiser/pullout.git"
   },
   "scripts": {
-    "test": "tape test/*.js",
-    "lint": "eslint lib test",
-    "watch:test": "npm run watcher -- \"npm test\"",
-    "watcher": "nodemon -w lib -w test -x",
-    "coverage": "nyc npm test",
-    "report": "nyc report --reporter=text-lcov | coveralls"
+    "test": "madrun test",
+    "lint": "madrun lint",
+    "fix:lint": "madrun fix:lint",
+    "watch:test": "madrun watch:test",
+    "watcher": "madrun watcher",
+    "coverage": "madrun coverage",
+    "report": "madrun report"
   },
   "dependencies": {},
   "license": "MIT",
   "main": "lib/pullout.js",
   "devDependencies": {
     "coveralls": "^3.0.0",
-    "eslint": "^5.9.0",
-    "eslint-plugin-node": "^8.0.0",
+    "eslint": "^6.4.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-putout": "^2.0.0",
+    "madrun": "^3.0.5",
     "nodemon": "^1.11.0",
     "nyc": "^14.0.0",
-    "redrun": "^7.0.0",
-    "tape": "^4.2.0",
-    "try-to-catch": "^1.1.1",
-    "try-to-tape": "^1.0.0"
+    "putout": "^6.1.0",
+    "supertape": "^1.2.3",
+    "try-to-catch": "^1.1.1"
   },
   "engines": {
     "node": ">=8.0.0"

@@ -2,8 +2,7 @@
 
 const fs = require('fs');
 
-const tryTo = require('try-to-tape');
-const test = tryTo(require('tape'));
+const test = require('supertape');
 const tryToCatch = require('try-to-catch');
 const pullout = require('..');
 
@@ -51,7 +50,7 @@ test('pullout: type: string: empty', async (t) => {
 
 test('pullout: type: buffer', async (t) => {
     const read = fs.createReadStream(__filename);
-    const data = await pullout(read, 'buffer')
+    const data = await pullout(read, 'buffer');
     const file = fs.readFileSync(__filename);
     
     t.deepEqual(data, file, 'data should be equal');
@@ -62,7 +61,7 @@ test('pullout: error', async (t) => {
     const random = Math.random();
     const read = fs.createReadStream(String(random));
     
-    const [e] = await tryToCatch(pullout, read)
+    const [e] = await tryToCatch(pullout, read);
     
     t.ok(e, 'read error: ' + e.message);
     t.end();
