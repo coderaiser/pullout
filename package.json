@@ -15,6 +15,12 @@
     "type": "git",
     "url": "git://github.com/coderaiser/pullout.git"
   },
+  "nyc": {
+    "exclude": [
+      "test",
+      ".*.js"
+    ]
+  },
   "scripts": {
     "test": "madrun test",
     "lint": "madrun lint",
