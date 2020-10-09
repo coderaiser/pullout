@@ -13,8 +13,8 @@ npm i pullout
 Type could be `string` or `buffer`.
 
 ```js
-const pullout = require('pullout'),
-const fs = require('fs'),
+const pullout = require('pullout');
+const fs = require('fs');
 
 const readStream = fs.createReadStream(__filename);
 
