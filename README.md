@@ -1,5 +1,14 @@
 # Pullout [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL] [![Coverage Status][CoverageIMGURL]][CoverageURL]
 
+[NPMIMGURL]: https://img.shields.io/npm/v/pullout.svg?style=flat
+[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
+[CoverageIMGURL]: https://coveralls.io/repos/coderaiser/pullout/badge.svg?branch=master&service=github
+[NPMURL]: https://npmjs.org/package/pullout "npm"
+[BuildStatusURL]: https://github.com/coderaiser/pullout/actions?query=workflow%3A%22Node+CI%22 "Build Status"
+[BuildStatusIMGURL]: https://github.com/coderaiser/pullout/workflows/Node%20CI/badge.svg
+[LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"
+[CoverageURL]: https://coveralls.io/github/coderaiser/pullout?branch=master
+
 Pull out data from stream.
 
 ## Install
@@ -27,14 +36,5 @@ console.log(data);
 - [pipe-io](https://github.com/coderaiser/pipe-io "pipe-io") - pipe streams and handle events
 
 ## License
+
 MIT
-
-[NPMIMGURL]:                https://img.shields.io/npm/v/pullout.svg?style=flat
-[BuildStatusIMGURL]:        https://img.shields.io/travis/coderaiser/pullout/master.svg?style=flat
-[LicenseIMGURL]:            https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
-[CoverageIMGURL]:           https://coveralls.io/repos/coderaiser/pullout/badge.svg?branch=master&service=github
-[NPMURL]:                   https://npmjs.org/package/pullout "npm"
-[BuildStatusURL]:           https://travis-ci.org/coderaiser/pullout  "Build Status"
-[LicenseURL]:               https://tldrlegal.com/license/mit-license "MIT License"
-[CoverageURL]:              https://coveralls.io/github/coderaiser/pullout?branch=master
-

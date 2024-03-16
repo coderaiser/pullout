@@ -1,6 +1,7 @@
 {
   "name": "pullout",
   "version": "5.0.0",
+  "type": "commonjs",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "pull out data from stream",
   "homepage": "http://github.com/coderaiser/pullout",
