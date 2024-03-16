@@ -1,3 +1,28 @@
+2024.03.16, v5.0.0
+
+feature:
+- c9885ef pullout: drop support of node < 18
+- d57e558 pullout: c8 v9.1.0
+- 7d8426b pullout: nodemon v3.1.0
+- 37ac35b pullout: supertape v10.4.0
+- c4789cd pullout: eslint v8.57.0
+- ae25e96 pullout: eslint-plugin-putout v22.4.1
+- bf491a5 pullout: madrun v10.0.1
+- 7259dd8 pullout: putout v35.7.4
+- 8c8c6e3 (package) supertape v2.0.1
+- e7c2266 (package) eslint-plugin-putout v5.0.1
+- 0654f08 (package) madrun v7.0.0
+- 4e0987a (package) putout v9.1.0
+- 499ecd7 (package) eslint v7.3.1
+- 4c3b532 (package) try-to-catch v3.0.0
+- a050b34 (package) nodemon v2.0.2
+- 124ae9d (package) madrun v5.4.1
+- 778acb3 (package) eslint-plugin-putout v3.2.1
+- f2ba36e (package) putout v7.4.3
+- 58d14ef (package) eslint-plugin-node v11.0.0
+- bbe7418 (package) nyc v15.0.0
+- 810e822 (package) try-to-catch v2.0.1
+
 2019.09.21, v4.0.0
 
 feature:
