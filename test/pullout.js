@@ -66,4 +66,3 @@ test('pullout: error', async (t) => {
     t.ok(e, 'read error: ' + e.message);
     t.end();
 });
-
