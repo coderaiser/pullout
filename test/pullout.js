@@ -275,11 +275,7 @@ test('pullout: limit: numeric string', async (t) => {
 });
 
 test('pullout: type: string: mixed string and buffer chunks', async (t) => {
-    const stream = Readable.from([
-        'hello ',
-        Buffer.from('я'),
-        ' world',
-    ]);
+    const stream = Readable.from(['hello ', Buffer.from('я'), ' world']);
     
     const data = await pullout(stream);
     

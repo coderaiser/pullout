@@ -40,7 +40,7 @@ import {pullout} from 'pullout';
 import {tryToCatch} from 'try-to-catch';
 
 const [error, body] = await tryToCatch(pullout, request, 'string', {
-    limit: 1024 * 1024,
+    limit: 1024 ** 2,
 });
 
 if (error?.code === 'ELIMIT')
