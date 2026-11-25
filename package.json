@@ -29,13 +29,13 @@
   "license": "MIT",
   "main": "lib/pullout.js",
   "devDependencies": {
-    "c8": "^9.1.0",
     "eslint": "^8.57.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-putout": "^22.4.1",
     "madrun": "^10.0.1",
     "nodemon": "^3.1.0",
     "putout": "^35.7.4",
+    "superc8": "^12.7.0",
     "supertape": "^10.4.0",
     "try-to-catch": "^3.0.0"
   },
