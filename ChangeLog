@@ -1,3 +1,16 @@
+2026.11.25, v6.0.0
+
+feature:
+- 166126d pullout: multibyte chars split between chunks: add support
+- 01068fe pullout: migrate to ESM
+- fb83763 pullout: try-to-catch v4.1.0
+- 54326ee pullout: supertape v13.6.2
+- 0b700fd pullout: putout v42.26.3
+- d547801 pullout: madrun v13.0.4
+- 9ee23f9 pullout: eslint-plugin-putout v31.5.0
+- 7d348e1 pullout: eslint v10.15.0
+- cda7646 pullout: superc8 v12.7.0
+
 2024.03.16, v5.0.1
 
 fix:
