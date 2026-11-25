@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import {Readable} from 'node:stream';
 import {fileURLToPath} from 'node:url';
 import {dirname} from 'node:path';
+import {Buffer} from 'node:buffer';
 import {test} from 'supertape';
 import {tryToCatch} from 'try-to-catch';
 import {pullout} from '../lib/pullout.js';
