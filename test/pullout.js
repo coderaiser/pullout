@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {Readable} from 'node:stream';
 import {fileURLToPath} from 'node:url';
 import {dirname} from 'node:path';
 import {test} from 'supertape';
@@ -66,5 +67,58 @@ test('pullout: error', async (t) => {
     const [e] = await tryToCatch(pullout, read);
     
     t.ok(e, 'read error: ' + e.message);
+    t.end();
+});
+
+test('pullout: type: string: multibyte char split between chunks', async (t) => {
+    const buffer = Buffer.from('я');
+    const stream = Readable.from([
+        buffer.subarray(0, 1),
+        buffer.subarray(1),
+    ]);
+    
+    const data = await pullout(stream);
+    
+    t.equal(data, 'я', 'should not break multibyte char');
+    t.end();
+});
+
+test('pullout: type: string: emoji split between chunks', async (t) => {
+    const buffer = Buffer.from('a😀b');
+    const stream = Readable.from([
+        buffer.subarray(0, 3),
+        buffer.subarray(3, 5),
+        buffer.subarray(5),
+    ]);
+    
+    const data = await pullout(stream);
+    
+    t.equal(data, 'a😀b', 'should not break emoji');
+    t.end();
+});
+
+test('pullout: type: string: string chunks', async (t) => {
+    const stream = Readable.from(['hello', ' ', 'я']);
+    
+    const data = await pullout(stream);
+    
+    t.equal(data, 'hello я', 'should join string chunks');
+    t.end();
+});
+
+test('pullout: type: string: stream with encoding', async (t) => {
+    const buffer = Buffer.from('я');
+    const stream = Readable.from([
+        buffer.subarray(0, 1),
+        buffer.subarray(1),
+    ], {
+        objectMode: false,
+    });
+    
+    stream.setEncoding('utf8');
+    
+    const data = await pullout(stream);
+    
+    t.equal(data, 'я', 'should work with setEncoding');
     t.end();
 });
