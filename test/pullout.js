@@ -1,10 +1,12 @@
-'use strict';
+import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {dirname} from 'node:path';
+import {test} from 'supertape';
+import {tryToCatch} from 'try-to-catch';
+import {pullout} from '../lib/pullout.js';
 
-const fs = require('node:fs');
-
-const {test} = require('supertape');
-const {tryToCatch} = require('try-to-catch');
-const pullout = require('..');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 test('pullout: args: no', async (t) => {
     const [e] = await tryToCatch(pullout);

@@ -1,7 +1,7 @@
 {
   "name": "pullout",
   "version": "5.0.1",
-  "type": "commonjs",
+  "type": "module",
   "author": "coderaiser <mnemonic.enemy@gmail.com> (https://github.com/coderaiser)",
   "description": "pull out data from stream",
   "homepage": "http://github.com/coderaiser/pullout",
@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/coderaiser/pullout.git"
+    "url": "git+https://github.com/coderaiser/pullout.git"
   },
   "scripts": {
     "test": "madrun test",
@@ -40,6 +40,6 @@
     "try-to-catch": "^4.1.0"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   }
 }
