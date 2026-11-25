@@ -1,9 +1,9 @@
 'use strict';
 
-const fs = require('fs');
+const fs = require('node:fs');
 
-const test = require('supertape');
-const tryToCatch = require('try-to-catch');
+const {test} = require('supertape');
+const {tryToCatch} = require('try-to-catch');
 const pullout = require('..');
 
 test('pullout: args: no', async (t) => {

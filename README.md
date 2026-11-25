@@ -22,8 +22,8 @@ npm i pullout
 Type could be `string` or `buffer`.
 
 ```js
+const fs = require('node:fs');
 const pullout = require('pullout');
-const fs = require('fs');
 
 const readStream = fs.createReadStream(__filename);
 
