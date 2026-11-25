@@ -17,9 +17,11 @@ Pull out data from stream.
 npm i pullout
 ```
 
-## pullout(stream[, type = 'string'])
+## pullout(stream[, type = 'string', {limit}])
 
 Type could be `string` or `buffer`.
+
+`limit` is the maximum size in bytes. When more data arrives, `pullout` stops reading and rejects with an error with `code: 'ELIMIT'`, so a huge or endless stream (for example a chunked http request without `Content-Length`) is never fully buffered. The stream is not destroyed, so you can still use it, for example to send an error response.
 
 ```js
 import fs from 'node:fs';
@@ -29,6 +31,20 @@ const readStream = fs.createReadStream(__filename);
 
 const data = await pullout(readStream);
 console.log(data);
+```
+
+With a limit:
+
+```js
+import {pullout} from 'pullout';
+import {tryToCatch} from 'try-to-catch';
+
+const [error, body] = await tryToCatch(pullout, request, 'string', {
+    limit: 1024 * 1024,
+});
+
+if (error?.code === 'ELIMIT')
+    response.end('Request body is too large!');
 ```
 
 ## Related

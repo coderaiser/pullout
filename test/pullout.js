@@ -123,3 +123,166 @@ test('pullout: type: string: stream with encoding', async (t) => {
     t.equal(data, 'я', 'should work with setEncoding');
     t.end();
 });
+
+const chunks = (...a) => Readable.from(a.map((b) => Buffer.from(b)));
+
+test('pullout: limit: under', async (t) => {
+    const data = await pullout(chunks('hello'), 'string', {
+        limit: 10,
+    });
+    
+    t.equal(data, 'hello');
+    t.end();
+});
+
+test('pullout: limit: exactly', async (t) => {
+    const data = await pullout(chunks('hello'), 'string', {
+        limit: 5,
+    });
+    
+    t.equal(data, 'hello');
+    t.end();
+});
+
+test('pullout: limit: buffer: under', async (t) => {
+    const data = await pullout(chunks('hello'), 'buffer', {
+        limit: 5,
+    });
+    
+    t.deepEqual(data, Buffer.from('hello'));
+    t.end();
+});
+
+test('pullout: limit: over: message', async (t) => {
+    const [e] = await tryToCatch(pullout, chunks('hello!'), 'string', {
+        limit: 5,
+    });
+    
+    t.equal(e.message, 'stream is larger than 5 bytes!');
+    t.end();
+});
+
+test('pullout: limit: over: code', async (t) => {
+    const [e] = await tryToCatch(pullout, chunks('hello!'), 'string', {
+        limit: 5,
+    });
+    
+    t.equal(e.code, 'ELIMIT');
+    t.end();
+});
+
+test('pullout: limit: over: buffer', async (t) => {
+    const [e] = await tryToCatch(pullout, chunks('hello!'), 'buffer', {
+        limit: 5,
+    });
+    
+    t.equal(e.code, 'ELIMIT');
+    t.end();
+});
+
+test('pullout: limit: over: many small chunks', async (t) => {
+    const stream = chunks(...'1234567890'.split(''));
+    const [e] = await tryToCatch(pullout, stream, 'string', {
+        limit: 5,
+    });
+    
+    t.equal(e.code, 'ELIMIT');
+    t.end();
+});
+
+test('pullout: limit: over: counts bytes, not chars', async (t) => {
+    const [e] = await tryToCatch(pullout, chunks('яяяя'), 'string', {
+        limit: 5,
+    });
+    
+    t.equal(e.code, 'ELIMIT');
+    t.end();
+});
+
+test('pullout: limit: over: string chunks', async (t) => {
+    const stream = Readable.from(['яяяя']);
+    const [e] = await tryToCatch(pullout, stream, 'string', {
+        limit: 5,
+    });
+    
+    t.equal(e.code, 'ELIMIT');
+    t.end();
+});
+
+test('pullout: limit: over: endless stream', async (t) => {
+    let produced = 0;
+    
+    const stream = new Readable({
+        read() {
+            produced++;
+            this.push(Buffer.from('1234567890'));
+        },
+    });
+    
+    await tryToCatch(pullout, stream, 'string', {
+        limit: 100,
+    });
+    
+    stream.destroy();
+    
+    t.ok(produced < 5000, 'should stop reading an endless stream');
+    t.end();
+});
+
+test('pullout: limit: over: does not destroy stream', async (t) => {
+    const stream = chunks('hello!');
+    
+    await tryToCatch(pullout, stream, 'string', {
+        limit: 5,
+    });
+    
+    t.notOk(stream.destroyed, 'should leave stream open to send a response');
+    t.end();
+});
+
+test('pullout: limit: not a number', async (t) => {
+    const [e] = await tryToCatch(pullout, chunks('hello'), 'string', {
+        limit: 'big',
+    });
+    
+    t.equal(e.message, 'limit should be a positive number!');
+    t.end();
+});
+
+test('pullout: limit: negative', async (t) => {
+    const [e] = await tryToCatch(pullout, chunks('hello'), 'string', {
+        limit: -1,
+    });
+    
+    t.equal(e.message, 'limit should be a positive number!');
+    t.end();
+});
+
+test('pullout: limit: no limit', async (t) => {
+    const data = await pullout(chunks('hello world'), 'string', {});
+    
+    t.equal(data, 'hello world');
+    t.end();
+});
+
+test('pullout: limit: numeric string', async (t) => {
+    const [e] = await tryToCatch(pullout, chunks('hello'), 'string', {
+        limit: '10',
+    });
+    
+    t.equal(e.message, 'limit should be a positive number!');
+    t.end();
+});
+
+test('pullout: type: string: mixed string and buffer chunks', async (t) => {
+    const stream = Readable.from([
+        'hello ',
+        Buffer.from('я'),
+        ' world',
+    ]);
+    
+    const data = await pullout(stream);
+    
+    t.equal(data, 'hello я world');
+    t.end();
+});
